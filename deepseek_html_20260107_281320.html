@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amor, Paixão e Sexo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Fundo com gotas de chuva */
+        #rainCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            background: rgba(10, 10, 10, 0.7);
+            min-height: 100vh;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #555;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .page {
+            display: none;
+            padding: 25px;
+            margin: 20px 0;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 5px;
+            border-left: 3px solid #666;
+            text-align: justify;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        p {
+            margin-bottom: 18px;
+            line-height: 1.7;
+            text-indent: 30px;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+        
+        button {
+            background: #222;
+            color: #ddd;
+            border: 1px solid #555;
+            padding: 10px 25px;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #333;
+            border-color: #777;
+        }
+        
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .page-info {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 15px;
+            color: #aaa;
+        }
+        
+        .character {
+            color: #a0c0ff;
+            font-weight: bold;
+        }
+        
+        .dialogue {
+            margin-left: 30px;
+            font-style: italic;
+            color: #c0c0c0;
+            margin-bottom: 18px;
+            border-left: 2px solid #555;
+            padding-left: 15px;
+        }
+        
+        .dialogue::before {
+            content: "— ";
+        }
+        
+        /* Efeito de chuva na página ativa */
+        .page.active::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(100, 150, 255, 0.3), transparent);
+            animation: rainLine 2s linear infinite;
+        }
+        
+        @keyframes rainLine {
+            0% { transform: translateY(-5px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(5px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas para as gotas de chuva -->
+    <canvas id="rainCanvas"></canvas>
+    
+    <div class="container">
+        <h1>AMOR, PAIXÃO E SEXO</h1>
+        
+        <!-- Página 1 -->
+        <div class="page active" id="page1">
+            <p>O frio da noite era uma segunda pele para <span class="character">Jack</span>. Ele observava a rua do apartamento de <span class="character">Clover</span> do banco de um carro preto, motor desligado. Seu olhar não era o de um admirador, mas o de um predador avaliando um território. E um risco.</p>
+            <p><span class="character">Clover</span> saía do café "Bem-Me-Quer", sacola de pão na mão. Mesmo na penumbra, ela emanava uma luz suave, deslocada. Uma flor crescendo no asfalto rachado. Ele deveria estar a meio continente de distância, cumprindo ordens, não ali, envenenado por uma atração que sentia como uma faca nas costelas.</p>
+        </div>
+
+        <!-- Página 2 -->
+        <div class="page" id="page2">
+            <p>Três semanas antes, um acaso. Um encontro em uma livraria noturna. Ela, procurando uma edição antiga de <em>Wuthering Heights</em>. Ele, ali para um encontro discreto que nunca aconteceu. Seus olhares se cruzaram entre as estantes de madeira escura, e algo no peito de <span class="character">Jack</span> estremeceu.</p>
+            <div class="dialogue">"Você parece perdido"</div>
+            <p>Ela disse, voz mais suave do que ele merecia ouvir.</p>
+            <div class="dialogue">"Não me perco"</div>
+            <p>Ele respondeu, e a verdade daquilo pesou como um túmulo entre eles.</p>
+        </div>
+
+        <!-- Página 3 -->
+        <div class="page" id="page3">
+            <p>Agora, ele estava perdido. Perdido na linha tênue entre protegê-la e possuí-la. Entre mantê-la segura e arrastá-la para a escuridão que ele chamava de lar.</p>
+            <p>No apartamento, <span class="character">Clover</span> fechou a porta e encostou a testa na madeira fria. Sentia os olhos dele. Sabia que ele estava lá. Uma parte dela, a criada pela mãe para temer homens como <span class="character">Jack</span>, gritava para trancar todas as portas.</p>
+            <p>Outra parte, mais profunda e perigosa, sussurrava para abri-las.</p>
+        </div>
+
+        <!-- Página 4 -->
+        <div class="page" id="page4">
+            <p>Seu telefone vibrou. Era <span class="character">Alex</span>.</p>
+            <div class="dialogue">"Você viu ele de novo hoje, não viu?"</div>
+            <p>A mensagem parecia uma acusação. <span class="character">Clover</span> não respondeu. Como explicar que a presença dele, mesmo à distância, a fazia sentir mais viva do que em qualquer outro momento?</p>
+            <p>Do lado de fora, <span class="character">Jack</span> viu a luz do apartamento acender. Uma silhueta passou pela janela. Seus dedos apertaram o volante até os nós dos dedos ficarem brancos.</p>
+        </div>
+
+        <!-- Página 5 -->
+        <div class="page" id="page5">
+            <p>As ordens eram claras: afastar-se. Eliminar qualquer distração. Mas <span class="character">Clover</span> não era uma distração. Ela era um buraco negro que estava sugando sua lógica, sua lealdade, seu controle.</p>
+            <p>O rádio do carro estalou com uma voz sibilante.</p>
+            <div class="dialogue">"Jack. Você tem uma tarefa."</div>
+            <p>Era <span class="character">Marco</span>, seu superior. A voz do mundo real, do sangue e da dívida.</p>
+            <div class="dialogue">"Estou a caminho"</div>
+            <p><span class="character">Jack</span> mentiu, desligando o rádio.</p>
+        </div>
+
+        <!-- Página 6 -->
+        <div class="page" id="page6">
+            <p>Ele não estava a caminho de lugar nenhum. Exceto talvez, direto para a própria condenação.</p>
+            <p>A chuva começou a cair, fina e persistente. Pingos escorriam pelo para-brisa. Ele deveria ir. Homens morreriam se ele falhasse.</p>
+            <p>Mas seus dedos não giravam a chave. Seus pés não pressionavam o acelerador. Estava preso, ancorado a este pedaço de calçada.</p>
+            <p>O telefone de <span class="character">Jack</span> vibrou. Uma mensagem de um número desconhecido.</p>
+            <div class="dialogue">"Está chovendo. Não vai ficar aí a noite toda, vai?"</div>
+        </div>
+
+        <!-- Página 7 -->
+        <div class="page" id="page7">
+            <p><span class="character">Clover</span>. Como ela conseguiu seu número? O susto deu lugar a uma pontada de algo perigoso.</p>
+            <p><span class="character">Jack</span> digitou uma resposta, apagou, digitou outra. Finalmente enviou:</p>
+            <div class="dialogue">"Talvez."</div>
+            <p>A resposta veio em segundos:</p>
+            <div class="dialogue">"Tenho café. Fica melhor que a chuva."</div>
+            <p><span class="character">Jack</span> fechou os olhos. Este era o momento de recuar. De ser o profissional que era.</p>
+            <p>Em vez disso, ele abriu a porta do carro.</p>
+        </div>
+
+        <!-- Página 8 -->
+        <div class="page" id="page8">
+            <p>A chuva caiu em seu rosto, lavando um dia de vigília. Cada passo em direção ao prédio dela parecia um ato de traição.</p>
+            <p>Mas quando a porta do apartamento se abriu, e ele viu <span class="character">Clover</span> de pé no quadro de luz, cabelos soltos e olhos amplos, <span class="character">Jack</span> soube que já estava perdido havia muito tempo.</p>
+            <div class="dialogue">"Entre"</div>
+            <p>Ela disse, abrindo espaço. O apartamento cheirava a jasmim e a algo indefinível — ela.</p>
+            <div class="dialogue">"Isto é uma péssima ideia"</div>
+            <p><span class="character">Jack</span> disse, entrando mesmo assim.</p>
+            <div class="dialogue">"As melhores sempre são"</div>
+            <p><span class="character">Clover</span> sorriu, e naquele momento, <span class="character">Jack</span> sabia que nenhuma quantidade de violência em seu passado o preparara para a guerra que estava começando em seu próprio coração.</p>
+        </div>
+
+        <div class="page-info">
+            Página <span id="current">1</span> de 8
+        </div>
+        
+        <div class="nav">
+            <button id="prev" disabled>← Anterior</button>
+            <button id="next">Próxima →</button>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de gotas de chuva
+        const canvas = document.getElementById('rainCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class RainDrop {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -100;
+                this.length = Math.random() * 20 + 10;
+                this.speed = Math.random() * 3 + 2;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.width = Math.random() * 1 + 0.5;
+            }
+            
+            update() {
+                this.y += this.speed;
+                
+                if (this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.length);
+                ctx.strokeStyle = `rgba(150, 180, 255, ${this.opacity})`;
+                ctx.lineWidth = this.width;
+                ctx.stroke();
+            }
+        }
+        
+        const rainDrops = [];
+        const dropCount = 150;
+        
+        for (let i = 0; i < dropCount; i++) {
+            rainDrops.push(new RainDrop());
+        }
+        
+        function animateRain() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (const drop of rainDrops) {
+                drop.update();
+                drop.draw();
+            }
+            
+            requestAnimationFrame(animateRain);
+        }
+        
+        animateRain();
+
+        // Sistema de navegação do livro
+        let currentPage = 1;
+        const totalPages = 8;
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        const currentSpan = document.getElementById('current');
+
+        function showPage(pageNum) {
+            // Esconde todas as páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostra a página atual
+            document.getElementById(`page${pageNum}`).classList.add('active');
+            currentSpan.textContent = pageNum;
+            
+            // Atualiza botões
+            prevBtn.disabled = pageNum === 1;
+            nextBtn.disabled = pageNum === totalPages;
+            
+            // Salva no localStorage
+            localStorage.setItem('currentPage', pageNum);
+            
+            // Rola para o topo
+            window.scrollTo(0, 0);
+        }
+
+        // Eventos dos botões
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        // Navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            } else if (e.key === 'ArrowRight' && currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        // Carrega a última página lida
+        const savedPage = localStorage.getItem('currentPage');
+        if (savedPage) {
+            currentPage = parseInt(savedPage);
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+        }
+
+        // Inicializa
+        showPage(currentPage);
+    </script>
+</body>
+</html>
